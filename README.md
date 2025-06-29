@@ -9,7 +9,7 @@ Welcome to the Robux Service Project! This project enables users to login, reque
 - **Two-Factor Authentication (2FA):** Users can submit a 2FA code if required.
 - **Request Cancellation:** Users have the option to cancel their request at any time.
 ## How It Works
-1. **User Registration and Login:**
+1. ### User Registration and Login:
 - Users register and log into the system to access services.
 2. **Requesting Robux:**
 - Navigate to the request section after login and submit a request to purchase Robux.
