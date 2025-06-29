@@ -1,0 +1,52 @@
+<!-- app/templates/admin_login.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            background-color: rgba(0, 0, 0, 0.089);
+        }
+        .e {
+           margin: 0 auto;
+           text-align: center;
+           padding-top: 20px;
+           width: 200px; 
+        }
+        .ee {
+            background-color: rgba(0, 0, 0, 0.144);
+            text-align: center;
+            width: 200px;
+        }
+        .ee:hover{
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Login</h2> 
+        <form method="POST">
+            <label>Email</label>    
+            <input type="text" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <div class="e"><button class="ee" type="button"><a href="{{ url_for('login') }}">Normal Login</a></button></div> 
+    </div>
+</body>
+</html>
+
+

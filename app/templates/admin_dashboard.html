@@ -1,0 +1,70 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<!-- Filter Form: appears ONCE above the loop -->
+<form method="GET" class="status-filter-form">
+    <label for="status">Filter by Status:</label>
+    <select name="status" id="status" onchange="this.form.submit()">
+        <option value="">All</option>
+        <option value="pending" {% if request.args.get('status') == 'pending' %}selected{% endif %}>Pending</option>
+        <option value="qr_sent" {% if request.args.get('status') == 'qr_sent' %}selected{% endif %}>QR Sent</option>
+        <option value="paid" {% if request.args.get('status') == 'paid' %}selected{% endif %}>Paid</option>
+        <option value="rejected" {% if request.args.get('status') == 'rejected' %}selected{% endif %}>Rejected</option>
+        <option value="canceled" {% if request.args.get('status') == 'canceled' %}selected{% endif %}>Canceled</option>
+    </select>
+</form>
+
+<!-- Orders list -->
+{% for order in orders %}
+    <hr>
+    <p><strong>Order #{{ order.id }}</strong></p>
+    <p>Email: {{ order.email_plain }}</p>
+    <p>Robux: {{ order.robux_amount }} | Price: ${{ order.price_usd }}</p>
+    <p class="order-status {{ order.status }}">{{ order.status.capitalize() }}</p>
+
+    {% if order.status == 'pending' %}
+    <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="order_id" value="{{ order.id }}">
+        <label for="qr_file">Upload QR</label>
+        <input type="file" id="qr_file_{{ order.id }}" name="qr_file" accept="image/*" required onchange="previewImage(event, '{{ order.id }}')">
+         <br><div style="align-items: center; display: flex; margin-left: auto; margin-right: auto;"> 
+        <img id="preview_{{ order.id }}" src="#" alt="Image preview" style="max-height: 300px; display: none; margin-top: 10px; margin-left: auto; margin-right: auto;">
+        </div><br>
+        <label>Input Quick Login Code</label>
+        <input type="text" name="quick_login" maxlength="6" required>
+        <button type="submit" name="action" value="send_qr">Submit</button>
+    </form>
+
+    <form method="POST">
+        <input type="hidden" name="order_id" value="{{ order.id }}">
+        <button class="red_button" type="submit" name="action" value="reject">Reject</button>
+    </form>
+
+    {% elif order.status == 'qr_sent' %}
+    <form method="POST">
+        <input type="hidden" name="order_id" value="{{ order.id }}">
+        <p>2FA Code: {{ order.twofa }}</p>
+        <button type="submit" name="action" value="mark_paid">Mark as Paid</button>
+    </form>
+    {% endif %}
+{% endfor %}
+<script>
+function previewImage(event, orderId) {
+    const input = event.target;
+    const preview = document.getElementById('preview_' + orderId);
+
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+{% endblock %}

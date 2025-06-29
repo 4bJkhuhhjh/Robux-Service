@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ current_user.email }}</h2>
+<h3>Your Robux Requests</h3>
+
+{% if orders %}
+    {% for order in orders %}
+        <hr>
+        <p><strong>Order #{{ order.id }}</strong></p>
+        <p>Robux: {{ order.robux_amount }} | Price: ${{ order.price_usd }}</p>
+        <p>Status: <span class="order-status {{ order.status }}">{{ order.status.capitalize() }}</span></p>
+
+        {% if order.status == "qr_sent" and order.qr_filename %}
+            <p><strong>Scan this QR to Pay:</strong></p>
+            <img src="{{ url_for('static', filename='qr_codes/' ~ order.qr_filename) }}" width="250">
+            <p><strong>Use this Quick Login Code: </strong></p>
+            <h1><strong>{{ order.quick_login }}</strong></h1>
+            <p><strong>2FA code (if u got sent one)</strong></p>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="order_id" value="{{ order.id }}">
+                <input type="text" style="width: 570px;" name="2fa"></input>
+                <button type="submit" name="action" value="send_2fa">Send</button>
+            </form>
+            <p>After paying, wait for confirmation.</p>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="order_id" value="{{ order.id }}">
+                <button class="red_button" type="submit" name="action" value="reject">Cancel</button>
+            </form>
+        {% elif order.status == "paid" %}
+            <p style="color: green;">✅ Payment confirmed. Thank you!</p>
+        {% elif order.status == "rejected" %}
+            <p style="color: red">❌ Sorry but an admin rejected your order.</p>
+        {% elif order.status == "canceled" %}
+            <p style="color: red">❌ What a shame!</p>
+        {% else %}
+            <p style="color: orange;">Waiting for admin to approve your order.</p>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <p>You have no orders yet.</p>
+{% endif %}
+{% endblock %}
