@@ -16,12 +16,12 @@ git checkout -b feature/your-feature-name
 	* Implement your changes in the code, whether it's fixing a bug, adding a feature, or updating documentation.
 1. **Write Tests:**
 	* Ensure that you write appropriate tests for your code changes to maintain quality and functionality.
-1. **Commit Your Changes:**Commit your changes with a clear and concise message.`
+1. **Commit Your Changes:** Commit your changes with a clear and concise message.`
 `
 ```Bash
 git commit -m "Description of the changes made"
 ```
-7. **Push Changes to GitHub:**Push your changes to your forked repository.`
+7. **Push Changes to GitHub:** Push your changes to your forked repository.`
 `
 ```Auto
 git push origin feature/your-feature-name
