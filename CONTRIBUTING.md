@@ -2,12 +2,12 @@ Thank you for your interest in contributing to the Robux Service project! We wel
 ## How to Contribute
 1. **Fork the Repository:**
 	* Start by forking the repository to your GitHub account.
-1. **Clone the Repository:**Clone the forked repository to your local machine.`
+1. **Clone the Repository:** Clone the forked repository to your local machine.`
 `
 ```Auto
 git clone https://github.com/4bigguys/robux-service.git
 ```
-3. **Create a New Branch:**Create a new branch for your feature or bugfix.`
+3. **Create a New Branch:** Create a new branch for your feature or bugfix.`
 `
 ```Auto
 git checkout -b feature/your-feature-name
