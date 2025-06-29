@@ -22,16 +22,16 @@ Welcome to the Robux Service Project! This project enables users to login, reque
 1. **Cancellation:**
 	* Users can cancel their request at any point before final approval/payment.
 ## Getting Started
-1. **Clone the Repository **
+1. **Clone the Repository**
 ```Auto
 git clone https://github.com/4bJkhuhhjh/Robux-Service.git
 ```
-1. **Install Dependencies **
+1. **Install Dependencies**
 ```Auto
 cd robux-service
 pip install -r requirements.txt
 ```
-1. **Run the Application **
+1. **Run the Application**
 ```Auto
 python3 run.py
 ```
