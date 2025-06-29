@@ -10,18 +10,18 @@ Welcome to the Robux Service Project! This project enables users to login, reque
 - **Request Cancellation:** Users have the option to cancel their request at any time.
 ## How It Works
 1. **User Registration and Login:**
- - Users register and log into the system to access services.
+ ‎ - Users register and log into the system to access services.
 2. **Requesting Robux:**
- - Navigate to the request section after login and submit a request to purchase Robux.
+ ‎ - Navigate to the request section after login and submit a request to purchase Robux.
 3. **Approval Process:**
- - An admin reviews the request and, upon approval, sends a quick login code to the user.
+ ‎ - An admin reviews the request and, upon approval, sends a quick login code to the user.
 4. **Payment:**
- - Users receive a QR code image from the admin for payment processing.
+ ‎ - Users receive a QR code image from the admin for payment processing.
 5. **Finalizing Purchase:**
- - Users may send a 2FA code if prompted during the transaction.
- - The process is complete, and users receive their purchased Robux.
+ ‎ - Users may send a 2FA code if prompted during the transaction.
+ ‎ - The process is complete, and users receive their purchased Robux.
 6. **Cancellation:**
- - Users can cancel their request at any point before final approval/payment.
+ ‎ - Users can cancel their request at any point before final approval/payment.
 ## Getting Started
 **Clone the Repository**
 ```
